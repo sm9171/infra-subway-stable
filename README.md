@@ -44,22 +44,55 @@ npm run dev
 
 ### 1단계 - 화면 응답 개선하기
 1. 성능 개선 결과를 공유해주세요 (Smoke, Load, Stress 테스트 결과)
-
+   1. editmyinfo
+      - 개선 전
+      ![](loadtest/editmyinfo/before_smoke_result.png)
+      - 개선 후
+      ![](loadtest/editmyinfo/after_smoke_result.png)
+   2. findpath
+      - 개선 전
+      ![](loadtest/findpath/before_smoke_result.png)
+      - 개선 후
+      ![](loadtest/findpath/after_smoke_result.png)
+   3. getfavorites
+      - 개선 전
+      ![](loadtest/getfavorites/before_smoke_result.png)
+      - 개선 후
+      ![](loadtest/getfavorites/after_smoke_result.png)
 2. 어떤 부분을 개선해보셨나요? 과정을 설명해주세요
-
+   1. Reverse Proxy 개선하기
+      1. gzip 압축
+      2. cache 설정 적용
+      3. http/2 설정
+      2. WAS 성능 개선하기
+         1. 스프링 캐싱 구현(line,member)
+         2. 중복 메서드 제거(findStationById,findById)
 ---
 
 ### 2단계 - 스케일 아웃
 
 1. Launch Template 링크를 공유해주세요.
-
+- https://ap-northeast-2.console.aws.amazon.com/ec2/home?region=ap-northeast-2#LaunchTemplateDetails:launchTemplateId=lt-0fa2c0642a9ea78d4
 2. cpu 부하 실행 후 EC2 추가생성 결과를 공유해주세요. (Cloudwatch 캡쳐)
-
+   ![](loadbalance/cloudwatch.png)
 ```sh
-$ stress -c 2
+#!/bin/sh
+
+        while true
+do
+
+        a=1
+
+done
 ```
 
 3. 성능 개선 결과를 공유해주세요 (Smoke, Load, Stress 테스트 결과)
+- smoke 결과
+![](loadbalance/smoke.png)
+- load 결과
+![](loadbalance/load.png)
+- stress 결과
+![](loadbalance/stress.png)
 
 ---
 ### [추가] 1단계 - 쿠버네티스로 구성하기
